@@ -1,6 +1,7 @@
 var faker = require('faker');
 var mysql = require('mysql');
 
+
 // CONNECTING to mysql db
 var connection = mysql.createConnection({
     host: 'localhost',
@@ -50,8 +51,6 @@ connection.query(q, [data], function(err, result) {
     console.log(result);
 });
  
-
-
 // ENDING connection so it doesn't persist
 connection.end();
 
