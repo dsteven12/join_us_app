@@ -4,11 +4,11 @@
         <h1>JOIN US</h1>
         <p class="lead">Enter your email to join 
             <span>
-                <strong>518</strong>
+                <strong><%=data %></strong>
             </span> 
         others on our waitlist. We are 100% a SAFE organization.</p>
-        <form method="POST" action="/register">
-            <input type="text" class="form" placeholder="Enter Your Email">
+        <form method="POST" action="/signup">
+            <input type="text" name="email" class="form" placeholder="Enter Your Email">
             <button>Join Now</button>
         </form>        
     </div>

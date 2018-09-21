@@ -1,9 +1,11 @@
 var express = require('express');
 var faker = require('faker');
 var mysql = require('mysql');
+var bodyParser = require('body-parser');
 var app = express();
 
 app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({extended: true}));
 
 var connection = mysql.createConnection({
     host: 'localhost',
@@ -16,7 +18,18 @@ app.get('/', function(req, res) {
     connection.query(q, function(err, results) {
         if(err) throw err;
         var count = results[0].count;
-        res.render('home');
+        res.render('home', {data: count});
+    });
+});
+
+app.post('/signup', function(req, res) {
+    var person = {
+        email: req.body.email
+    };
+    
+    connection.query('INSERT INTO users SET ?', person, function(err, result) {
+        if(err) throw err;
+        res.redirect("/");
     });
 });
 
