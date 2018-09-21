@@ -3,6 +3,8 @@ var faker = require('faker');
 var mysql = require('mysql');
 var app = express();
 
+app.set('view engine', 'ejs');
+
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'dlardizabal',
@@ -14,7 +16,7 @@ app.get('/', function(req, res) {
     connection.query(q, function(err, results) {
         if(err) throw err;
         var count = results[0].count;
-        res.send(`We have ${count} users in our db`);
+        res.render('home');
     });
 });
 
